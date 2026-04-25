@@ -1,0 +1,952 @@
+candidacy_id,name
+254001,Mark D. Levine
+254003,Susan Liebman
+254004,Marisa Arrabito
+254014,Jumaane D. Williams
+254018,Khari O. Edwards
+254034,Antonio Reynoso
+254049,Kevin S. Parker
+254052,Andrew M. Cuomo
+254054,Jenifer Rajkumar
+254119,Fernando Cabrera
+254129,Faith A. Bondy
+254130,Brad Lander
+254131,Myrna Lepree
+254133,Justin Brannan
+254134,Gabriel S. Turzo
+254135,Benjamin Wetzler
+254136,Shahana K. Hanif
+254138,Keith Powers
+254140,Harvey D. Epstein
+254141,Sara C. Valenzuela
+254143,Bridgette Ahn
+254144,Judith Gross
+254146,Charles Martin Arnold
+254148,Kayla Santosuosso
+254149,Faith A. Bondy
+254150,Charles Sturcken
+254152,Gregory L. Lambert
+254153,John K. Buthorn
+254154,Darlene Mealy
+254157,Ayo Harrington
+254161,Michael J. Schweinsburg
+254167,Alana Sivin
+254170,Danniel Maio
+254174,Marquis Jenkins (M)
+254179,Ciara Marie Lugo (F)
+254184,Rafael Salamanca Jr.
+254254,Alvin L. Bragg Jr.
+254257,Brad Hoylman-Sigal
+254259,Erik D. Bottcher
+254271,Lincoln Restler
+254272,Crystal Hudson
+254286,Zohran Kwame Mamdani
+254299,Wilfredo Lopez
+254301,Andy King
+254304,Hector Robertson
+254311,Juliette-Noor Haji
+254313,Chi Ajani Osse
+254340,Benjamin D. Wetzler
+254341,Phil Wong
+254358,Saundrea I. Coleman (F)
+254365,Jessica Ramos
+254366,Mercedes Narcisse
+254368,Sarah Batchu
+254369,Magda Napoleon (F)
+254370,Ron Thomas (M)
+254371,Jasmin Sanchez (F)
+254372,Shanel Thomas-Henry
+254390,Maya Kornberg
+254393,Scott M. Stringer
+254397,Vanessa Aronson
+254410,Janice P. Purvis
+254432,Malcolm Penn White (M)
+254433,Latoya L. LeGrand
+254436,Julie Menin
+254438,Nickie Kane
+254443,Janice Chen
+254459,Elsie Encarnacion
+254460,Paul Casali (M)
+254462,Kamillah M. Hanks
+254468,Jessica Florenciany
+254470,Lahoma Shipman
+254472,Eloisa L. Rowe-Barnett
+254474,Iris Cabrera
+254475,Sharon L. Irby
+254477,Larry Fernandez
+254479,Joseph A. Yanis
+254480,Maritza Rodriguez
+254489,Kevin C. Riley
+254497,Vanessa L. Gibson
+254499,Shekera Anessa Algarin
+254520,Eric Dinowitz
+254536,Elizabeth Lewinsohn
+254539,Eve Cho Guillergan
+254545,Shirley Aldebol
+254552,Thomas G. Wright-Fernandez
+254563,John J. Ciafone
+254566,Andrea Gordillo
+254570,Julie M. Milner
+254573,Yanna M. Henriquez
+254575,Pierina A. Sanchez
+254581,Sheridan C. Chu
+254593,David Aiken
+254604,Elvis L. Santana
+254607,Michael Blake
+254617,Ismael Malave Perez
+254623,Federico Colon
+254631,Peter Kefalas
+254647,Dimple Willabus
+254668,Bryan Hodge Vasquez
+254683,Edafe Okporo
+254685,Frank Morano
+254692,Justin E. Sanchez
+254694,Ty Hankerson
+254700,Althea V. Stevens
+254740,Marty Dolan
+254744,George M. Santana
+254756,Christopher Marte
+254761,Benjamin A. Akselrod (M)
+254764,Rebecca S. Weintraub (F)
+254815,Dermot P. Smyth
+254834,Diana L. Ayala (F)
+254866,Patrick John Timmins
+254872,John Ruiz Miranda
+254880,Melissa Mark Viverito
+254883,Japneet Singh
+254910,William Smith
+254915,Maria Ordonez (F)
+254919,Xavier Santiago
+254920,Luis Ordonez (M)
+254931,Desmond Cadogan
+254934,Alexandra Marks
+254938,Jonathan Brown
+254940,Ali Diini
+254943,Connor McGrath
+254945,Debra Green
+254946,Nina Saxon
+254950,Antonio Calcano
+254953,Diana I. Ayala
+254954,Nicole Press
+254956,Sabrina Bacote
+254960,Sarhay Acosta
+254962,Diana Rodriguez
+254963,Beverly MacFarlane
+254967,T. M. Bumpars-Ebanks
+254970,Monisha Mapp
+254981,Faheem Abdur-Razaaq
+254987,Teisha McKoy
+254996,Melanie Ruiz
+254999,Melinda Velez
+255006,Kaliris Salas-Ramirez
+255010,Juhaib Choudhury
+255013,Exodus Murphy Jr.
+255015,Patricia Del Pilar
+255018,Evelis Galarza-Serrano
+255021,Anthony Brown
+255024,Steven Travis
+255026,Joannie Acevedo
+255167,Jess Coleman
+255173,Karen Koslowitz
+255174,Matthew M. Mandell
+255175,Ronnie Croce
+255177,Kevin Ly
+255178,Edwin K. Wong
+255179,Sandra S. Mandell
+255181,David Aronov
+255182,Denise D. Rachnaev
+255184,Lilianna Zulunova
+255185,Mary Ellen G. Courtney
+255187,Myrna C. Jacobson
+255188,Ting Yan Wu
+255190,Nina V. Kulkarni
+255191,Sharon Levy
+255193,Lara M. Evangelista
+255275,Shaun Abreu
+255451,Randolph P. Mark
+255456,Earlette Simpson 
+255483,Jewel Jones
+255625,Shekar Krishnan
+255649,Deborah Glick
+255657,Kathryn Freed
+255661,David Siffert
+255664,Eliza Orlins
+255667,Anthony S. Hoffmann
+255670,Allen N. Roskoff
+255672,Susan Barrie
+255677,Sheila R. Rule
+255678,Patricia Laraia
+255679,Morton Minsley
+255680,Daniel Palmisano
+255681,Richard Corman
+255683,Linda Jacobson
+255684,Dennis Gault
+255686,Melissa Carty
+255687,Jeannine Kiely
+255688,Alfred Fuente
+255689,Timothy Wong
+255690,Karla Moskowitz
+255693,Chris J. Marchitello
+255694,Joshua Goodman
+255695,Katherine Slawinski
+255697,Arthur Z. Schwartz
+255699,Edward E. Keenan
+255701,Judith Jacobson
+255702,Michael Lagnado
+255704,Jonathan Geballe
+255705,Megan Pascarella
+255706,Mindy Rosier
+255708,Palak Kaushal
+255709,Dion M. Ashman
+255718,Bianca Cunningham
+255721,Eric Yu
+255722,Rachel J. Storch
+255723,Erycka Montoya
+255771,Todd J. Stein (M)
+255787,Reginald Swiney
+255823,Kim Sillen
+255829,Joseph Gordon
+255832,Mathew Quezada
+255843,Amy Chen O'Connell
+255844,Lukas Florczak
+255877,Jacqueline Lara
+255942,Abou S. Diakhate
+255945,Telee N. Brown
+255950,Zellnor Myrie
+255951,Anthony D. Weiner
+255955,Benjamin Chou 
+255975,Richie Barsamian
+255987,David Sepiashvili (M)
+255990,Maria L. Aulicino (F)
+256080,Soya Radin (F)
+256470,Earnestine Bell Temple
+256471,Maria A. Luna
+256472,Johanna Garcia
+256474,Rita Miller
+256475,Juana H. Luna
+256476,Jackie Rowe Adams
+256477,Nancy Brown
+256478,Anthony R. Viola
+256480,Carmen I. Grullon De Rojas
+256481,Patricia Scarborough
+256482,Dolores Leito
+256483,Brodie Enoch
+256484,Susan Southwell
+256485,Linda Royster
+256486,Nicholas Lyndon
+256487,Mark S. Hamburgh
+256488,Romula Jimenez
+256489,Valerie Settles
+256490,Obinna Carl Unegbu
+256491,Bruce Robertson
+256492,Lois J. Naftulin
+256493,Carolyn McBain
+256494,Freddy Perez Jr.
+256513,David A. Diaz
+256520,Jacqueline J. Torres
+256525,Danielle Herbert-Guggenheim
+256539,Cordell Cleare
+256541,Gerald Sullivan 
+256549,Mary P. Sullivan 
+256552,Ciaragrace  Donley 
+256555,Valerie Jo Bradley
+256558,George A. Donley 
+256562,Donna-Marie A. Gibbons
+256569,Inez E. Dickens
+256581,D. Dickens Richards
+256588,Jeanmarie Anaya
+256593,Richard J. Keane
+256622,Nelson Valentine
+256628,Ryan Lugo
+256631,Joanna G. Sanchez
+256642,Paul Pogozelski
+256663,Henrietta Lyle
+256667,Alexis J. Saunders
+256668,Norma Campusano (F)
+256669,Amy Slattery
+256671,Corey Ortega
+256672,Jenny D. Garcia
+256673,Joshua A. Clennon
+256674,Judith O. Eason
+256675,Laurie Tobias-Cohen
+256676,Shana Harmongoff
+256677,Maria A. Davis
+256678,Mayra A. Marmol Peralta
+256679,Maurice Franklin
+256680,Jose A. Ferreria Torres
+256681,Elizabeth Veras
+256682,Evangelina Fermin
+256683,Nyles J. Robinson
+256684,Juan Armando Penalo Ramos
+256685,Bienvenida Luna
+256686,Julia Guzman
+256687,Adalgisa Abreu
+256688,Ligia M. Mejia
+256689,Margarita Casimiro
+256690,Dale Nelson
+256691,Gisela A. Lora
+256693,Wilma J. Brown Phillips
+256695,Angela Trinidad
+256696,Keith L.T. Wright
+256697,Reina I. Ferreira
+256698,Frederick A. Teich
+256699,Altagracia Valiente
+256700,Karmen Reasco
+256701,Raymond N. Maniscalco
+256702,Jordan J.G. Wright
+256703,Chanel B. Coronado
+256704,Lidia R. Batista
+256705,Anne Walsh
+256706,Juan Peguero
+256707,Charles B. Rangel
+256708,Cleveland K. Manley
+256709,Corey Ortega (M)
+256711,Michelle P. Booker
+256712,Yolanda V. Brooks
+256713,Alicia Barksdale
+256714,Rafael A. Calvo
+256715,Maria Noemi Velez
+256716,Julia Coello Austin
+256717,Jane M. Arrendell-Johnson
+256718,Luis M. Johnson
+256719,Miosotis Cruz
+256720,Daniel Paterson
+256721,Debora Ferguson
+256722,Asuncion Serulle
+256723,Kasara Davidson
+256724,Altagracia Ozuna
+256725,Collin L. Thompson
+256726,Zunilda Yolanda Espinal
+256727,Erin P. Malone
+256728,Ashley Abreu
+256730,Lois V. Penny
+256731,Hugo Ortega
+256732,Matthew J. Sullivan
+256733,Tyhesha L. Smith
+256735,Barry J. Weinberg
+256736,Kenneth Graham
+256737,Beth A. Hanning
+256738,Michele Jones
+256739,Norma Almonte
+256740,Bonnie J. Walsh
+256741,Guelmy Ovalle
+256742,Courtnie A. McMillan
+256743,Carmen M. Garcia
+256745,Ricky L. Davis
+256746,Jeffrey K.  McMilleon
+256748,Viola Hamilton-Keith
+256749,Carl C. Aliviado Jr.
+256750,Melvin B. Alston
+256752,Michael T. Foley
+256753,Edward J. Pastore 
+256755,Karen A. Carr
+256757,Mary Dadario
+256759,Jennifer D. Oconnor
+256768,Christopher W. Knott
+256770,Richard W. Knott
+256778,Elizabeth Hennessey
+256783,John Hennessey
+256785,Naomy Rodriguez
+256793,Alice White 
+256795,Ruth Becker
+256801,Patricia A. McCabe
+256806,Donald J. Gallagher
+256815,Luis M. Johnson
+256821,Vincent Musca
+256825,Victoria G. Genna
+256828,Jane Arrendell-Johnson 
+256836,Carmen F. Araujo
+256845,Rosalia C. Gonzalez
+256855,Eugenice M. Ramirez
+256860,Juan T. Serulle
+256892,Ariel Arias 
+256913,Carmen M. Garcia 
+256914,Jay M. Frango
+256915,Lorraine M. LaPollo
+256919,Alicia Barksdale
+256923,Nathaly I. Arias
+256949,Tiffany Fulton
+256953,Lena Green
+256957,Marchelle Green
+256962,Trinidad Guilamo
+256964,Sheila Y. Harrison
+256965,Bernardo De La Cruz 
+256971,Michele Jones
+256978,Theona S. Reets-Dupont
+256982,Virginia Maloney
+256989,Angela Abreu
+256993,Dale Nelson
+256999,Clarisa M. Alayeto
+257009,Roxanne O. Mercado
+257010,Antirson R. Ortiz
+257013,Mircia Mercado
+257016,Jack Fogle
+257023,Jacqueline Sencion
+257037,Mayra A. Marmol Peralta
+257045,Julio C. Negron
+257049,Ling Ye
+257051,Ligia M. Mejia
+257058,Miguel A. Regalado
+257064,Jordan Diaz
+257076,Jose A. Ferreira Torres
+257084,Francia Pena-Reyes
+257088,Antonio Abreu
+257096,Karmen Reasco
+257101,Migdalia Berroa
+257109,Maria I. Cofresi
+257115,Angela Trinidad
+257119,Jenny D. Garcia
+257126,Elizabeth Veras
+257131,Adalgisa Abreu
+257137,Lidia R. Batista
+257141,Evangelina A. Fermin
+257215,Fedir Usmanov
+257313,Rafaela A. Garcia
+257320,Alan M. Gardner
+257335,Raysa S. Herrera
+257338,Kay J. Howard
+257340,Danneris M. Hernandez
+257342,David C. Crenshaw
+257346,Maria A. Luna
+257350,Juana H. Luna
+257356,Arthur M. McLean
+257359,James Benjamin
+257363,Nina J. Bernstein
+257369,Jackie Rowe-Adams
+257415,Carmen N. De La Rosa
+257416,Carmen Pena
+257417,Adriano Espaillat (M)
+257418,Raybblin Vargas
+257419,Maria Morillo (F)
+257421,Carmen Y. De la Rosa
+257423,Manny De Los Santos
+257425,Rosendo Mejia Dominguez
+257427,Ramon De La Rosa
+257428,Brunilda Rodriguez
+257429,Fernando Mendez
+257430,Dayana Pichardo
+257431,Rosario Capellan
+257432,Maurice A. Edwards
+257433,Erwin Fernandez
+257434,Noris Casillas
+257435,Barbara M. Frazer
+257436,Mariam James
+257437,Iris Baltazar
+257438,Micaela Lugo
+257439,Hector Vasquez
+257441,Whitney R. Tilson
+257444,Elizabeth Pepin
+257447,Calvin D. Sun 
+257449,Jasinta Delacruz
+257452,Jennyfer Almanzar
+257453,Alexa Aviles
+257454,Lyana M. Fernandez
+257455,Joanna Katz
+257457,Edwin Rosario
+257459,Paloma N. Lara
+257462,Nicole T. Castronova
+257464,Maria A. Mazara
+257465,Adrienne E. Adams
+257466,Carolyn A. Murtaugh
+257467,Miosotis N. Alba
+257468,Christopher S. Hazeltine
+257469,Edgar A. Tavarez
+257470,Carole G. Mulligan
+257471,Gail M. Sullivan
+257472,Quann D. Boyd
+257473,Clifton A. Hinton
+257474,Rowan Powers-Velasquez
+257475,Brendan Glynn
+257476,Annette Clark
+257477,Kyle Wade
+257478,Sharon Thomas
+257483,Catherine O'Connor
+257484,Kevin McConnell
+257485,Robin Martin
+257486,Anne-Marie McDonald-Smith
+257487,Eleanor Kennedy
+257488,Patrick Connelly Jr.
+257489,Mary Whelan
+257490,Martin M. McManus
+257491,LaDreamer Lark
+257492,Maureen Walsh
+257494,John Glynn
+257496,Mary Keegan
+257497,Tom Meehan
+257509,Shmuel Ranells
+257510,Margaret Powers
+257522,Christine James
+257524,Jake Schwartz
+257525,Kimkaye Jenkusky
+257527,Joseph Jenkusky
+257530,Welson Chang
+257531,Leah Go
+257538,Abou Sy Diakhate (M)
+257540,Jasmine L. Robinson (F)
+257544,Deborah Ann Delauro
+257546,Philip McManus
+257554,Richard P. Zaslow
+257556,Annie Zaslow
+257561,Elena Chin
+257562,James F. Coppola
+257565,Mildred G. Tabuso
+257569,Biane Peralta
+257578,Juan-Carlos Piedra
+257582,Natalie A. Piedra
+257606,Arkady Zavurov
+257607,Suleyman Rakhminov
+257613,Melissa Ann San Pedro
+257620,Soumaly King
+257648,Richard J. Nunez-Lawrence
+257657,Ellen M. Smith
+257673,Margaret Campione
+257679,Paul King
+257713,Maria D. Kaufer
+257714,Yolanda Ardezzone
+257715,Anthony J. Ardezzone Jr.
+257716,Ximena M. Frankel
+257717,Lauren J. Clavin 
+257718,Gladys Sandoval
+257721,Mark E. Morrill
+257723,Artur J. Schneider
+257724,Maria Doroba
+257726,John Davis
+257727,Viana Wu Tran 
+257728,Davis Peter
+257729,Raymond Santana
+257731,Joseph V. Ammendolea
+257732,Eileen M. Ammendolea
+257735,Carole G. Mulligan
+257737,Gabrielle R. Shatan
+257738,Cheramie Mondesire
+257740,Paul Stewart-Stand
+257741,William Romerstein
+257742,Lyana M. Fernandez
+257743,Eugene Perry
+257745,Carolyn A. Murtaugh
+257749,Joanna T. Katz
+257751,James C. Katz
+257753,Carla G. Findlay
+257756,Nelly Sorto
+257758,William Geiger
+257761,John J. Higgins
+257762,Aurora Valderrama
+257763,Helen Stemmler
+257764,Aura Moody
+257765,Karla A. Fisk
+257766,Brendan Glynn
+257768,Joycelyn Jack
+257769,Quann D. Boyd
+257770,Romeo Hitlall
+257783,Jay Jacky Wong (M)
+257790,Marshall Vanderpool
+257802,Madeline Conway
+257803,Elizabeth Pepin
+257806,Jasinta Delacruz
+257807,Tiffany M. Braby
+257808,Avatar L. Neal
+257809,Joyce Adewuni
+257811,Afua M. Preston
+257812,Rosaria R. Dimaggio
+257813,Alberta Bibb
+257815,Jamell Henderson
+257817,Cheryl Carter
+257824,Elva Warren
+257825,Pauline Watson
+257828,Charles L. Kaiser
+257830,Barbara Vanterpool
+257831,Michele Portillo
+257832,Helen Oliver
+257833,Olga Salcedo
+257835,Carolyn L. McNair
+257839,Irma E. Kaiser
+257954,Noemi Clotter
+257960,Miguelanea Rincon
+257979,Sarah Blas
+257982,Rosanna Del Rosario De Feliz
+257985,Adu A. Gyamfi
+257991,Tyray D.  Fedd
+258005,Luz Paulino
+258049,Joel Rivera
+258140,John Perez
+258156,Nicholas A. Reyes
+258182,Erin Hussein
+258192,Maria Passanente-Derr
+258196,Sylvia E. Di Pietro
+258200,Maureen Remacle
+258230,Dante Arnwine
+258359,Vanessa Warren
+258364,Allie Ryan
+258367,Mark Fiedler
+258374,Susan Lee
+258380,Heidi Boghosian
+258382,Alix Fredrika Kucker
+258385,Norma Ramirez
+258391,Joan Karn
+258394,Mindy Paez
+258396,Alan Ross
+258404,Deley Gazinelli
+258411,Ted Oehmke
+258414,Carmin Gonzalez
+258415,Mark Fraiden
+258418,Deborah Finston
+258424,Shelly Warwick
+258427,Maya de Silva Chafe
+258432,Carol Puttre-Czyz
+258437,Christopher J. Ryan
+258438,Raymond W. Cline
+258619,Ruben W. Wills
+258629,Shakur T. Joseph
+258643,Eli Brown
+258646,Lawman Lynch
+258649,William Smith (M)
+258651,Hilda Solomon (F)
+258652,Francisco E. Gonzalez (M)
+258654,Raul Reyes
+258655,James D. Gray
+258656,Rafael Rodriguez
+258657,Diana Burgos
+258658,Mildred Maneiro
+258659,James Ratti
+258660,Ismael Rodriguez
+258661,Carlos Diaz
+258662,Ruben Reyes
+258663,Hilda Candy Vasquez
+258665,Erica Gonzalez
+258671,Griffin T. Fossella
+258694,Kenny Lever
+258719,Paperboy Love Prince
+258721,Alexander J. Caruso
+258739,Rosa G. Diaz
+258743,Michelle Joni Lapidos
+258745,Rosa G. Diaz
+258747,Lindsey Royce
+258758,Brandon D. Gillespie
+258787,George Sarantopoulos
+258801,Ricardo J. Pacheco
+258803,Abraham S. Tischler (M)
+258805,Tehila Haddasah Tischler (F)
+258807,Jo Ann Lawson (F)
+258811,Sabrina N. Gates
+258821,Selma K. Bartholomew
+258823,Jammel Thompson
+258824,Paperboy Love Prince
+258860,Catherine Rose
+258865,Robert Rose
+258868,Ann Coughlin
+258870,Darren Coursey
+258878,Ari Kagan
+258884,Brandon D. Gillespie
+258889,Lucretia Regina-Potter (F)
+258890,Lili Ramirez
+258897,Dmitriy Kugel (M)
+258904,Rosa G. Diaz 
+258928,Isaiah Emerson
+258940,Joy Dacosta Fasciglione
+258978,Erik Bengtsen
+259077,Zenith Diaz
+259083,Miguel Pena
+259218,Argentina M. Cruz (F)
+259234,Francesca Castellanos
+259278,Tamika Mapp (F)
+259326,Annieta Ramjit-Lalsa
+259330,Pooran Lalsa
+259356,Montell C. Moseley
+259379,Nirmal C. Paul
+259383,Santa Paul
+259387,Nicanor Albines
+259393,Mercyruth G. Solivio
+259400,Judith O. Eason
+259411,Faheem Abdur-Razaaq
+259423,Keisha Ridgeway
+259433,Shirley Washington
+259435,Anthony Lynah
+259459,Lindon Sam
+259467,Christian Tivar
+259483,Maria Moronta
+259484,Tina Rose Shayevitz
+259490,Ava Keefe
+259497,Mary Richman
+259507,Nerys Rodriguez
+259560,Tiffany Khan
+259575,Jasmine Maria Solano
+259618,Miguel Estrella
+259625,Jo Ann Lawson
+259635,Arelis Mejia
+259649,Anthony Brown
+259695,Terrence Dixon
+259729,Justine Medina
+259747,Ricardo Lewis  III
+259764,Troy Weekes
+259779,Maria Ordonez
+259842,Sabrina Bacote
+259843,Raymond Santana
+259861,Roberta Pikser
+259865,Christal Williams
+259871,Marixa Caraballo
+259876,Mariam N. James
+259880,Nicole Press
+259892,Diana Rodriguez
+259905,Nicole Colombo
+259919,Nswana Samukonga
+259922,Eliza Rosario
+259937,Evelyn Toennies
+259970,Desmond Cadogan
+259975,Debra Green
+259982,Connor McGrath
+259989,Juan Rivera
+259995,Jose Calderon
+260019,Inna Vernikov
+260116,Lilly Regina
+260121,John Regina
+260129,Lisa Pressley
+260157,Seson Adams
+260377,Eric Perrotta
+260400,Silvia Murray
+260419,Emily Catanzaro
+260512,William Cheng
+260570,Aaron Li
+260628,Lucretia Regina-Potter
+260639,Monisha Mapp
+260656,Christopher Potter
+260678,Karen Delisi
+260695,Lydia Fraulo
+260696,Nachman Caller (M)
+260713,Mildred Cecala
+260731,Joseph Belladonna
+260739,Lacey Jordan
+260749,Gaetano Mazza
+260786,Cecilia Mignuolo
+260804,Lorenzo Digeronimo
+260951,Jeanny Belladonna
+260954,Giulia Digeronimo
+260958,Marie Mazza
+260964,Paige Delisi
+260968,Francesco Proscia
+260974,Charles Russo
+260980,Maryanna Pyryt
+260984,Katherine Vero
+260985,Alexis Farace
+260990,John Virardi
+260991,Candace Bryant
+260996,John Morreale
+261004,Andrea Tayar
+261012,Chase Bryant
+261020,Michael G. Cassisi
+261021,Suzanna Iacona
+261027,Marianne Bryant
+261031,Stephanie Tayar
+261034,Christian Bryant
+261038,Gabriella M. Cassisi
+261043,Rachel Arndt
+261045,Lisa Fabiszak
+261051,Mary Arndt
+261054,George Arndt
+261064,Naglaa Elmankhly
+261070,Nicholas Nitti
+261077,Nicholas Ali
+261081,Adrianna Borrometi
+261087,Giovanni Borrometi
+261098,Dmitriy Kugel
+261103,Ioannis Kordistos
+261105,Lucy Galasso
+261112,Gracie Borrometi
+261116,Justine Colasuonno
+261117,Patricia Caltabiano
+261122,Lillian Colasuonno
+261126,Donna Dimari
+261130,Anthony J. Tama
+261131,Robert Papagni
+261137,Rita Papagni
+261138,Rose Lynn Tama
+261140,Mei Ling Zhou
+261144,Gerardo Borrometi
+261145,Albert Berto
+261155,Nina Papagni
+261158,Peter Santopietro
+261159,Shi Fa Ho
+261162,Jacqueline Emhoff
+261163,Frances Berto
+261166,Todd D. Emhoff
+261167,Elizabeth Santoro
+261169,John T. Emhoff
+261171,Danielle Emhoff
+261175,John Papagni
+261177,Alyssa Laurenson
+261186,Joseph Laspina
+261190,Andrew Sgaglione
+261191,Nikole T. Mastroianni
+261199,Alessia Sgaglione
+261211,Grace Dicamillo
+261213,Rosa Martucci
+261215,Debra Prestia
+261220,Tamara Shelevaya
+261224,Maria Aleca
+261230,Lev Fainstein
+261245,Sarah Wong
+261267,Francesco Catanzaro
+261268,Anne Tram
+261272,Lilla Catanzaro
+261280,Frank Sgaglione
+261281,Larry Samaris
+261285,Alessandra Proscia
+261286,Angel Gramegna-Sgaglione
+261287,Benjamin Delisi
+261289,Kathryn Samaris
+261291,Onek Marachilian
+261293,David Eng
+261295,Jinna Eng
+261296,Constance Esposito
+261301,Steven Iacona
+261303,Vincent Bongiorni
+261305,Carol Iervolino
+261310,Dominick Derosa
+261312,James Delisi
+261315,Joseph Palazzolo
+261317,Raymond Pecoraro
+261319,Vanessa Mistretta
+261325,Lyuba Komissarova
+261326,Roberto Prestigiacomo
+261328,Salvatore Trombino
+261330,Olga Komissarova
+261332,Paige Prestigiacomo
+261334,Alex Komissarov
+261335,Domenico Rutigliano
+261339,Carmine Pecoraro
+261340,Frances Rutigliano
+261341,Sally Pecoraro
+261342,Linda Manzo
+261344,Giovanni Prestigiacomo
+261347,Antoinette Gecevice
+261350,Vincent Gecevice
+261353,Anthony Gecevice
+261361,Samantha Prestigiacomo
+261368,Gabriella Nitti
+261372,Rose Zanca
+261375,Gary Goretsky
+261378,Rimma Goretsky
+261546,Yury Tarnavsky
+261557,Stella Blyakher
+261591,Tatyana Panteleyeva
+261598,Olga Bazarskaya
+261617,Mira Zelikova
+261638,Vladimir Zelikov
+261658,Mariami N. Goderdzishvili
+261669,Viktoriya Varpakhovich
+261735,Su Yol Ha
+261951,Bella Boriskina
+261972,Arkadiy Y. Shoykhet
+262001,Linda M. Vorobyov
+262029,Basma Mirza
+262035,Taha Mirza
+262105,Sebastian I. Omsarashvili
+262116,Alexander V. Romanovich
+262143,Kin Lun Ho
+262170,Yuriy B. Botvinnik
+262189,Lyudmila Grinberg
+262191,Russell Porter
+262201,Xiaojing Wang
+262212,James F. Reilly
+262223,Hawiise Cabiri
+262224,Karina R. Bertaeva
+262229,Donna M. Caltabiano
+262236,Kevin T. McManus
+262240,Lyubov Yuzefouskaya
+262245,Rajni K. Shah
+262250,Yelena V. Dikun
+262252,Shobhana R. Shah
+262258,Bronya Aronchik
+262268,Ana C. Sanchez
+262280,Anna Kazior
+262288,Pathmasiril Sivarasa
+262297,Radoslaw Turowski
+262307,Ting Ting Wu
+262310,Mary C. Moder
+262318,Kareeshini Gogna
+262334,Hepziban R.E. Srithas
+262339,Meeradevi G. Srithas
+262346,Aleksandr Vasin
+262358,Syed A. Zaidi
+262359,Bebe B. Ishaq
+262369,Pat E. Jones
+262372,Jacquline D. Tarrant
+262375,Jack Bonanno
+262460,Yevgeniy S. Gryazev
+262465,Kenny Chen
+262501,Leonid Boriskin
+262516,Ilona Frid
+262522,Boris Kleyman
+262531,Olga Kolpakova
+262539,Chi Y. Kwok
+262550,Svetlana Livsheetz
+262556,Mark Shulmov
+262567,Svetlana Sheuchenko
+262575,Maya Nalibotsky
+262589,Feliks Y. Karp
+262604,Jose Sandoval Perez
+262615,Galina M. Shoykhet
+262618,Shirley Chen
+262623,Andrey S. Kotov
+262627,Yuliya Kotova
+262635,Mariya Urilova
+262642,Lyudmila Smirnova
+262649,Irina Kutsinsky
+262668,Igor K. Plit
+262679,Anthony Fuscaldo
+262680,Thomas Diana
+262681,AnneMarie S. Devlin
+262682,Miguel Estrella
+262683,Elizabeth Butler 
+262684,Eamon P. Devlin
+262686,Robert J. Bishop
+262693,Alexander Babushkin
+262722,Anna Postoyenko
+262740,Yin Tai Yau
+262766,Jenice Zayas-Rivera
+262780,Aleksandra Kashirskaya Asatiani
+262784,Marina Sokolovsky
+262982,Laurie Windsor
+262988,Antonio Graziano
+262992,Gennadiy Sosonko
+262997,Mohamed Khatari
+263001,Alexsandr Kravets
+263009,Giorgi Metreveli
+263026,Larisa Skudin
+263105,Summer Tyte
+263107,Israel Burns
+263110,Loretta Aloise
+263112,Emilio Aloise
+263114,Henry Lallave
+263119,Medea Berdzenishvili
+263129,Nadezhda Filipenkova
+263133,Michael Foutino
+263135,David Czajkowski
+263137,Sana Hanif
+263156,Vladimir Shchipakin
+263157,Galina Shchipakina
+263158,Mamuka Tchikaidze
+263159,Nick Tchikaidze
+263160,Oksana Kochergina
+263161,Andrey Karpenko
+263162,Marina Shirokiy
+263163,Evgeniy Shirokiy
+263165,Oleksandra Fedyk
+263168,Alla Nekhayrova
+263172,Vladzimir Harshkov
+263174,Adam Bruzzese
+263176,Julia Bruzzese
+263179,Josephine Bruzzese
+263182,Natale Bruzzese
+263187,Yee Har Chiu
+263189,Galina David
+263193,Cecilia T. Han
+263196,Amy Leung
+263200,Viktoriya Zeltsman
+263201,Anna Goldberg
+263210,Andrew J. Okuneff
+263219,Maria Amato
+263382,Kwami Grant
+263437,Angela Pisano-Proscia
+263438,Vera Harwilchuk
+263466,Carmen Moreno
+263467,Jennifer Mora

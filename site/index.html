@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NYC election archive — ED-level mayoral primary results</title>
+<meta name="description" content="Election district-level results for the 2021 and 2025 NYC Democratic mayoral primaries. First-choice and ranked-choice final-round tallies, derived from the BOE Cast Vote Records.">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css">
+<link rel="preconnect" href="https://basemaps.cartocdn.com">
+<style>
+  :root {
+    --bg: #0e0f12;
+    --panel: #16181d;
+    --panel-2: #1c1f26;
+    --border: #2a2e36;
+    --ink: #e8e9ec;
+    --ink-dim: #9ca0a8;
+    --accent: #f5b800;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    font-size: 14px; line-height: 1.4;
+  }
+  #app { display:grid; grid-template-columns: 340px 1fr; height:100vh; }
+  #sidebar { background:var(--panel); border-right:1px solid var(--border); padding:18px; overflow-y:auto; }
+  #map { position:relative; }
+  h1 { font-size: 17px; margin: 0 0 4px 0; font-weight: 600; letter-spacing: -0.01em; }
+  .sub { font-size: 12px; color: var(--ink-dim); margin-bottom: 18px; }
+  .control { margin-bottom: 14px; }
+  .control label { display:block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim); margin-bottom: 6px; }
+  select, button {
+    width:100%; background: var(--panel-2); color: var(--ink);
+    border:1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-size: 13px;
+    font-family: inherit;
+  }
+  button { cursor:pointer; }
+  button:hover { border-color: var(--accent); }
+  .pill-row { display:flex; gap:6px; }
+  .pill-row button { padding: 7px 8px; font-size: 12px; }
+  .pill-row button.active { background: var(--accent); color: #111; border-color: var(--accent); font-weight:600; }
+  .legend { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .legend-bar { height: 10px; border-radius: 3px; margin: 6px 0; }
+  .legend-ticks { display:flex; justify-content: space-between; font-size: 11px; color: var(--ink-dim); }
+  .stat { display:flex; justify-content: space-between; padding: 3px 0; font-size: 12px; }
+  .stat .v { font-variant-numeric: tabular-nums; color: var(--ink); }
+  .stat .k { color: var(--ink-dim); }
+  #tooltip {
+    position:absolute; pointer-events:none; background: rgba(20,22,28,0.96);
+    border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-size: 12px;
+    min-width: 180px; max-width: 240px; display:none; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  #tooltip h3 { margin:0 0 4px 0; font-size: 12px; color: var(--ink-dim); font-weight:500; }
+  #tooltip .lead { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  #tooltip table { width:100%; border-collapse: collapse; }
+  #tooltip td { padding: 1px 0; font-variant-numeric: tabular-nums; }
+  #tooltip td:last-child { text-align: right; color: var(--ink-dim); }
+  details { margin-top: 14px; }
+  details summary { cursor:pointer; font-size: 12px; color: var(--ink-dim); padding: 4px 0; }
+  details a { color: var(--accent); }
+  .footer { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 11px; color: var(--ink-dim); }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  @media (max-width: 700px) {
+    #app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    #sidebar { max-height: 50vh; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <h1>NYC election archive</h1>
+    <div class="sub">Election district-level mayoral primary results</div>
+
+    <div class="control">
+      <label>Election</label>
+      <select id="election"></select>
+    </div>
+
+    <div class="control">
+      <label>Round</label>
+      <div class="pill-row" id="round-toggle">
+        <button data-round="fc" class="active">First choice</button>
+        <button data-round="fr">RCV final</button>
+      </div>
+    </div>
+
+    <div class="control">
+      <label>Candidate</label>
+      <select id="candidate"></select>
+    </div>
+
+    <div class="control">
+      <label>Compare to</label>
+      <select id="compare"><option value="">— off —</option></select>
+    </div>
+
+    <div class="legend">
+      <div id="legend-title" style="font-size:12px; margin-bottom: 6px;"></div>
+      <div class="legend-bar" id="legend-bar"></div>
+      <div class="legend-ticks" id="legend-ticks"></div>
+    </div>
+
+    <div id="hover-info" style="margin-top:16px; min-height: 80px;">
+      <div style="font-size:12px; color: var(--ink-dim);">Hover an election district for details.</div>
+    </div>
+
+    <details>
+      <summary>About this map</summary>
+      <p style="font-size:12px; color:var(--ink-dim);">
+        ED-level Mayor primary results don't exist in any official BOE publication —
+        BOE only releases citywide round-by-round PDFs and the raw cast vote records.
+        This site computes per-ED first-choice and ranked-choice final-round tallies
+        from the CVR ZIP files for each election. See
+        <a href="methodology.html">methodology</a> for sources, definitions, and limits.
+      </p>
+    </details>
+
+    <div class="footer">
+      Source: <a href="https://www.vote.nyc/page/election-results-summary">NYC Board of Elections</a> CVR + <a href="https://data.cityofnewyork.us/City-Government/Election-Districts/h2n3-98hq">NYC Open Data</a> ED shapefile.
+      <br><br>
+      Built by Josh Greenman. Data and code on <a href="https://github.com/joshgreenman1973/nyc-election-archive">GitHub</a>.
+    </div>
+  </aside>
+  <div id="map"></div>
+  <div id="tooltip"></div>
+</div>
+<script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

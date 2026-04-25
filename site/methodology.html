@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — NYC election archive</title>
+<style>
+  body { max-width: 760px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; background: #fafafa;
+    font-family: Georgia, "Times New Roman", serif; line-height: 1.55; font-size: 16px; }
+  h1, h2, h3 { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; line-height: 1.2; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  h2 { font-size: 19px; margin-top: 32px; padding-bottom: 4px; border-bottom: 1px solid #ddd; }
+  h3 { font-size: 16px; margin-top: 22px; margin-bottom: 6px; }
+  a { color: #b8860b; }
+  code { background: #eee; padding: 1px 5px; border-radius: 3px; font-size: 14px; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  .lede { color: #555; font-size: 17px; margin: 6px 0 24px 0; }
+  .nav { font-family: -apple-system, sans-serif; font-size: 13px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; font-size: 14px; font-family: -apple-system, sans-serif; }
+  th, td { padding: 6px 10px; border-bottom: 1px solid #ddd; text-align: left; }
+  th { background: #eee; }
+  .caveat { background: #fff8e1; border-left: 3px solid #b8860b; padding: 10px 14px; margin: 14px 0; }
+</style>
+</head>
+<body>
+<div class="nav"><a href="index.html">← back to map</a></div>
+<h1>Methodology</h1>
+<p class="lede">How the per-election-district mayoral primary results on this site are constructed, and what they do and don't represent.</p>
+
+<h2>What this is</h2>
+<p>NYC election district (ED)-level results for the 2021 and 2025 Democratic mayoral primaries, including both first-choice tallies and ranked-choice voting (RCV) final-round tallies. The Board of Elections does not publish either of these at the ED level for citywide ranked-choice races; both are computed here from the official Cast Vote Record (CVR) files.</p>
+
+<h2>Sources</h2>
+<table>
+<tr><th>Data</th><th>Source</th><th>Format</th></tr>
+<tr><td>2021 Democratic primary CVR</td><td><a href="https://www.vote.nyc/sites/default/files/pdf/election_results/2021/20210622Primary%20Election/cvr/PE2021_CVR_Final.zip">vote.nyc</a></td><td>Zip of XLSX, 109 MB</td></tr>
+<tr><td>2025 Democratic primary CVR</td><td><a href="https://www.vote.nyc/sites/default/files/pdf/election_results/2025/20250624Primary%20Election/rcv/2025_Primary_CVR_2025-07-17.zip">vote.nyc</a></td><td>Zip of XLSX, 90 MB</td></tr>
+<tr><td>Election district boundaries</td><td><a href="https://data.cityofnewyork.us/City-Government/Election-Districts/h2n3-98hq">NYC Open Data h2n3-98hq</a> via DCP ArcGIS REST</td><td>GeoJSON, 4,247 EDs</td></tr>
+<tr><td>Candidate ID → name map</td><td>Included in each year's CVR ZIP</td><td>XLSX</td></tr>
+</table>
+
+<h2>How results are computed</h2>
+
+<h3>1. CVR parsing</h3>
+<p>Each CVR ZIP contains 25–32 XLSX files, one per borough × ballot-channel (election day, absentee, affidavit, early voting, emergency). Each row is one ballot; columns include the ballot's precinct (formatted <code>AD: NN ED: NNN</code>) and one column per (race, choice rank), e.g. <code>DEM Mayor Choice 1 of 5 Citywide</code>. Cell values are either a candidacy ID (integer), <code>undervote</code>, <code>overvote</code>, or <code>Write-in</code>.</p>
+<p>For each year we extract precinct + the five DEM Mayor choice columns from every file, drop ballots with no DEM Mayor vote in any of the 5 ranks, and parse the precinct string into a single integer ED ID matching the shapefile field <code>ElectDist</code> (= AD × 1000 + ED).</p>
+
+<h3>2. First choice</h3>
+<p>For each ED, count ballots by their <code>Choice 1</code> candidate (excluding undervotes, overvotes, and write-ins, which BOE reports separately). Percentages on the map are share of <em>first-choice votes cast in that ED for a named DEM candidate</em>, not share of all ballots.</p>
+
+<h3>3. RCV final round</h3>
+<p>This site uses the standard <em>citywide-elimination</em> approach — the same approach BOE uses to certify the official final-round tallies. The procedure is:</p>
+<ol>
+<li>Restrict the candidate set to "major" candidates — those who received at least 1% of citywide first-choice votes. For 2025 the majors are Mamdani, Cuomo, Lander, Adrienne Adams, and Stringer; for 2021 they are Adams, Garcia, Wiley, Yang, Stringer, Donovan, McGuire, and Morales.</li>
+<li>Run a single citywide instant-runoff elimination on all ballots: repeatedly eliminate the candidate with the fewest active votes citywide, redistributing those ballots to the next non-eliminated choice, until one candidate has a majority or only two remain (the "finalists").</li>
+<li>For each ED, count how each ballot would have been allocated at the final round — i.e. each ballot is counted toward the highest-ranked finalist on that ballot. The map's "RCV final" view shows that share per ED.</li>
+</ol>
+<p>The 2021 finalists are Eric Adams and Kathryn Garcia. The 2025 finalists are Zohran Mamdani and Andrew Cuomo. In the "RCV final" view, eliminated candidates show 0% in every ED — they did not survive to the final round. To see geographic strength of an eliminated candidate, use the "First choice" view.</p>
+
+<h3>4. Geographic join</h3>
+<p>Each ED's results are joined to the 2024–2025 vintage of the NYC ED shapefile by integer ED ID. Both 2021 and 2025 elections were conducted under the post-2010-Census ED boundaries; while individual EDs occasionally split or merge between primaries, the great majority remain identical. EDs in the shapefile with no ballots in the CVR (typically retired or empty EDs) are dropped; ballots with an ED ID not present in the shapefile (typically formatting anomalies in the CVR) are also dropped — both counts are logged in the build pipeline.</p>
+
+<h2>What this is not</h2>
+<ul>
+<li><strong>Not a full archive yet.</strong> Only the 2021 and 2025 Democratic mayoral primaries are included in this release. Backfill of earlier primaries, generals, and other races is a separate phase and depends on shapefile vintage matching for each election year.</li>
+<li><strong>Not turnout.</strong> The map's "ballots cast" number is ballots with a DEM Mayor vote, not all ballots cast in the ED, and not registered-voter denominators. The Board of Elections publishes voter enrollment by City Council district but not by ED; ED-level enrollment requires a FOIL request.</li>
+<li><strong>Not the official certified result.</strong> The citywide RCV winner and percentages reported by BOE are the source of record; this site reproduces them in aggregate, but per-ED RCV percentages here use a per-ED elimination order, which differs from the citywide elimination order BOE applies.</li>
+<li><strong>Not editorialized.</strong> No commentary or framing is layered on top of the data. The map is a tool for asking questions, not for answering them.</li>
+</ul>
+
+<h2>Reproducibility</h2>
+<p>All code, raw inputs, and normalized intermediates are in <a href="https://github.com/joshgreenman1973/nyc-election-archive">github.com/joshgreenman1973/nyc-election-archive</a>. The pipeline is four scripts in <code>data-pipeline/</code>:</p>
+<ul>
+<li><code>fetch_shapefile.py</code> — paginated download of the ED shapefile from NYC DCP ArcGIS REST.</li>
+<li><code>normalize_cvr.py</code> — extracts DEM Mayor ballots from each year's CVR ZIP into a single CSV.</li>
+<li><code>build_results.py</code> — per-ED first-choice counts and per-ED RCV resolution.</li>
+<li><code>build_geo.py</code> — joins results to the shapefile, emits one compact GeoJSON per election plus the manifest the frontend reads.</li>
+</ul>
+
+<p style="margin-top:30px;color:#888;font-size:13px;">Last updated: 2026-04-25.</p>
+</body>
+</html>

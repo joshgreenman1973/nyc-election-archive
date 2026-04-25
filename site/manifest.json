@@ -1,0 +1,81 @@
+{
+  "elections": [
+    {
+      "year": "2021",
+      "majors": [
+        {
+          "candidacy_id": 217572,
+          "name": "Eric L. Adams",
+          "slug": "adams"
+        },
+        {
+          "candidacy_id": 217605,
+          "name": "Scott M. Stringer",
+          "slug": "stringer"
+        },
+        {
+          "candidacy_id": 217796,
+          "name": "Andrew Yang",
+          "slug": "yang"
+        },
+        {
+          "candidacy_id": 218127,
+          "name": "Raymond J. McGuire",
+          "slug": "mcguire"
+        },
+        {
+          "candidacy_id": 218491,
+          "name": "Dianne Morales",
+          "slug": "morales"
+        },
+        {
+          "candidacy_id": 219469,
+          "name": "Maya D. Wiley",
+          "slug": "wiley"
+        },
+        {
+          "candidacy_id": 219978,
+          "name": "Kathryn A. Garcia",
+          "slug": "garcia"
+        },
+        {
+          "candidacy_id": 221183,
+          "name": "Shaun Donovan",
+          "slug": "donovan"
+        }
+      ],
+      "matched": 5623
+    },
+    {
+      "year": "2025",
+      "majors": [
+        {
+          "candidacy_id": 254052,
+          "name": "Andrew M. Cuomo",
+          "slug": "cuomo"
+        },
+        {
+          "candidacy_id": 254130,
+          "name": "Brad Lander",
+          "slug": "lander"
+        },
+        {
+          "candidacy_id": 254286,
+          "name": "Zohran Kwame Mamdani",
+          "slug": "mamdani"
+        },
+        {
+          "candidacy_id": 254393,
+          "name": "Scott M. Stringer",
+          "slug": "stringer"
+        },
+        {
+          "candidacy_id": 257465,
+          "name": "Adrienne E. Adams",
+          "slug": "adams"
+        }
+      ],
+      "matched": 4014
+    }
+  ]
+}
