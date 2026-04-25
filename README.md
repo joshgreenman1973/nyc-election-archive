@@ -3,7 +3,7 @@
 Election district-level results for NYC mayoral primaries. Phase 1 covers the 2021 and 2025 Democratic primaries — both first-choice tallies and ranked-choice voting (RCV) final-round tallies, computed per election district from the official Cast Vote Records.
 
 **Live site:** https://joshgreenman1973.github.io/nyc-election-archive/
-**Methodology:** [site/methodology.html](site/methodology.html)
+**Methodology:** [docs/methodology.html](docs/methodology.html)
 
 The NYC Board of Elections does not publish per-ED results for citywide ranked-choice races; it publishes citywide round-by-round PDFs and the raw cast vote records. This repo derives the per-ED tallies that don't exist anywhere else.
 
@@ -19,7 +19,7 @@ data/
   raw/                 BOE CVR ZIPs and the ED GeoJSON (gitignored — fetch with scripts)
   normalized/          per-ballot CSVs and per-ED result CSVs
   tiles/               results_<year>.geojson — one per election, served to the frontend
-site/                  static frontend (MapLibre + vanilla JS)
+docs/                  static frontend (MapLibre + vanilla JS)
   index.html
   app.js
   methodology.html
@@ -43,7 +43,7 @@ python3 data-pipeline/build_results.py     # per-ED RCV; ~2 minutes
 python3 data-pipeline/build_geo.py         # joins + manifest
 
 # Serve locally
-cd site && python3 -m http.server 8000
+cd docs && python3 -m http.server 8000
 ```
 
 ## What's in the CSVs

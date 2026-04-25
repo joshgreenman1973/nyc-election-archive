@@ -21,7 +21,7 @@ import pandas as pd
 ROOT = Path(__file__).parent.parent
 RAW = ROOT / "data" / "raw"
 NORM = ROOT / "data" / "normalized"
-SITE = ROOT / "site"
+SITE = ROOT / "docs"
 SITE.mkdir(parents=True, exist_ok=True)
 TILES = SITE  # write geojsons directly to site/ — they're deployment artifacts
 
