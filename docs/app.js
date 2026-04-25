@@ -115,15 +115,14 @@ async function loadManifest() {
 }
 
 function setupSources() {
-  for (const e of state.manifest.elections) {
-    map.addSource(`ed-${e.year}`, { type: "geojson", data: state.data[e.year] });
-  }
-  // Single visible layer; we swap source + paint as user selects
+  // One source, one layer — election change just swaps the data on the source.
+  // (Avoids fragile getLayer().source comparisons across MapLibre versions.)
   const first = state.manifest.elections[0].year;
+  map.addSource("ed", { type: "geojson", data: state.data[first] });
   map.addLayer({
     id: "ed-fill",
     type: "fill",
-    source: `ed-${first}`,
+    source: "ed",
     paint: {
       "fill-color": "#333",
       "fill-opacity": 0.85,
@@ -133,10 +132,11 @@ function setupSources() {
   map.addLayer({
     id: "ed-outline-hover",
     type: "line",
-    source: `ed-${first}`,
+    source: "ed",
     paint: { "line-color": "#fff", "line-width": 2 },
     filter: ["==", "ed", -1],
   });
+  attachInteractions();
 }
 
 function populateElectionSelect() {
@@ -187,36 +187,11 @@ function activeProp() {
 
 function applyStyle() {
   if (!state.election || !state.candidate) return;
-  // switch source if needed
-  const layer = map.getLayer("ed-fill");
-  const desired = `ed-${state.election}`;
-  if (!layer || layer.source !== desired) {
-    if (map.getLayer("ed-fill")) map.removeLayer("ed-fill");
-    if (map.getLayer("ed-outline-hover")) map.removeLayer("ed-outline-hover");
-    map.addLayer({
-      id: "ed-fill",
-      type: "fill",
-      source: desired,
-      paint: { "fill-color": "#333", "fill-opacity": 0.85, "fill-outline-color": "rgba(0,0,0,0.25)" },
-    });
-    map.addLayer({
-      id: "ed-outline-hover",
-      type: "line",
-      source: desired,
-      paint: { "line-color": "#fff", "line-width": 2 },
-      filter: ["==", "ed", -1],
-    });
-    attachInteractions();
-  }
-
+  const baseSrc = state.data[state.election];
   const compareOn = state.compare !== "";
   if (compareOn) {
-    // diff = candidate(current) - compare(other)
-    // For diff we need both in the same source, so we store the *baseline* candidate's
-    // value as a per-feature override property by joining the two GeoJSONs in JS.
-    // To keep it simple, we compute diff in JS and write to a transient prop.
+    // Compute per-feature diff in JS, write to __diff, then setData.
     const [yC, rC, sC] = state.compare.split(":");
-    const baseSrc = state.data[state.election];
     const cmpSrc = state.data[yC];
     const cmpProp = `${rC}_${sC}`;
     const lookup = new Map();
@@ -224,10 +199,11 @@ function applyStyle() {
     for (const f of baseSrc.features) {
       f.properties.__diff = (f.properties[activeProp()] ?? 0) - (lookup.get(f.properties.ed) ?? 0);
     }
-    map.getSource(desired).setData(baseSrc);
+    map.getSource("ed").setData(baseSrc);
     map.setPaintProperty("ed-fill", "fill-color", buildColorExpression("__diff", "diff"));
     renderLegend("diff");
   } else {
+    map.getSource("ed").setData(baseSrc);
     map.setPaintProperty("ed-fill", "fill-color", buildColorExpression(activeProp(), "share"));
     renderLegend("share");
   }
