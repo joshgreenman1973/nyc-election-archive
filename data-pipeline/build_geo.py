@@ -66,6 +66,12 @@ def build_year(year: str) -> dict:
         used.add(s)
         m["slug"] = s
 
+    def s(v):  # NaN/empty → "" (string fields)
+        return "" if v is None or (isinstance(v, float) and pd.isna(v)) else str(v)
+
+    def n(v):  # NaN → 0 (numeric fields)
+        return 0 if v is None or (isinstance(v, float) and pd.isna(v)) else round(float(v), 1)
+
     ed_props: dict[int, dict] = {}
     for row in summary.itertuples(index=False):
         ed_props[int(row.ed)] = {
@@ -73,10 +79,10 @@ def build_year(year: str) -> dict:
             "ballots": int(row.ballots),
             "fc_total": int(row.first_choice_total),
             "fr_active": int(row.final_round_active),
-            "first_winner": row.first_winner,
-            "first_winner_pct": round(float(row.first_winner_pct), 1),
-            "final_winner": row.final_winner,
-            "final_winner_pct": round(float(row.final_winner_pct), 1),
+            "first_winner": s(row.first_winner),
+            "first_winner_pct": n(row.first_winner_pct),
+            "final_winner": s(row.final_winner),
+            "final_winner_pct": n(row.final_winner_pct),
         }
     for row in results.itertuples(index=False):
         if not row.is_major:
@@ -109,7 +115,8 @@ def build_year(year: str) -> dict:
 
     fc = {"type": "FeatureCollection", "features": out_features}
     out_path = TILES / f"results_{year}.geojson"
-    out_path.write_text(json.dumps(fc, separators=(",", ":")))
+    # allow_nan=False catches any leftover NaN — fail loud rather than write invalid JSON
+    out_path.write_text(json.dumps(fc, separators=(",", ":"), allow_nan=False))
     print(f"  -> {out_path} ({out_path.stat().st_size:,} bytes)")
     return {"year": year, "majors": majors, "matched": matched}
 
