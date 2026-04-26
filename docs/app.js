@@ -187,10 +187,13 @@ function activeProp() {
 
 function applyStyle() {
   if (!state.election || !state.candidate) return;
+  renderLegend(state.compare !== "" ? "diff" : "share");
+  // Map updates only happen once MapLibre has finished loading. The legend and
+  // hover panel work without it.
+  if (!map.getSource("ed")) return;
   const baseSrc = state.data[state.election];
   const compareOn = state.compare !== "";
   if (compareOn) {
-    // Compute per-feature diff in JS, write to __diff, then setData.
     const [yC, rC, sC] = state.compare.split(":");
     const cmpSrc = state.data[yC];
     const cmpProp = `${rC}_${sC}`;
@@ -201,11 +204,9 @@ function applyStyle() {
     }
     map.getSource("ed").setData(baseSrc);
     map.setPaintProperty("ed-fill", "fill-color", buildColorExpression("__diff", "diff"));
-    renderLegend("diff");
   } else {
     map.getSource("ed").setData(baseSrc);
     map.setPaintProperty("ed-fill", "fill-color", buildColorExpression(activeProp(), "share"));
-    renderLegend("share");
   }
 }
 
@@ -312,17 +313,38 @@ els.round.addEventListener("click", e => {
   applyStyle();
 });
 
-let _inited = false;
-async function init() {
-  if (_inited) return;
-  _inited = true;
+// Two-phase init: UI loads from manifest immediately (independent of map),
+// then map sources/styling attach when MapLibre is ready. This way the
+// dropdowns work even if the basemap CDN is slow or blocked.
+let _mapReady = false;
+let _uiReady = false;
+
+function whenMapReady(fn) {
+  if (_mapReady) fn();
+  else map.on("load", () => fn());
+}
+
+async function initUI() {
+  if (_uiReady) return;
   await loadManifest();
-  setupSources();
   populateElectionSelect();
   populateCandidateSelect();
   populateCompareSelect();
-  attachInteractions();
+  _uiReady = true;
+  whenMapReady(initMap);
+}
+
+function initMap() {
+  setupSources();   // includes attachInteractions
   applyStyle();
 }
-map.on("load", init);
-if (map.isStyleLoaded()) init();
+
+map.on("load", () => {
+  _mapReady = true;
+  if (_uiReady && !map.getSource("ed")) initMap();
+});
+if (map.isStyleLoaded()) {
+  _mapReady = true;
+}
+
+initUI();
