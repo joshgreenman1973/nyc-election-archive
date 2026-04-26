@@ -210,19 +210,33 @@ function applyStyle() {
   }
 }
 
+function shortName(name) {
+  // "Andrew M. Cuomo" -> "Cuomo"; "Eric L. Adams" -> "Adams"
+  const parts = name.trim().split(/\s+/);
+  return parts[parts.length - 1];
+}
+
 function renderLegend(mode) {
   const stops = mode === "diff" ? DIFF_STOPS : SHARE_STOPS;
   const grad = stops.map(([v, c], i) => `${c} ${(i / (stops.length - 1)) * 100}%`).join(", ");
   els.legendBar.style.background = `linear-gradient(to right, ${grad})`;
-  els.legendTicks.innerHTML = stops.map(([v]) => `<span>${mode === "diff" ? (v > 0 ? "+" + v : v) : v}%</span>`).join("");
   const e = state.manifest.elections.find(x => x.year === state.election);
   const cand = e.majors.find(c => c.slug === state.candidate);
+
   if (mode === "diff") {
     const [yC, rC, sC] = state.compare.split(":");
     const eC = state.manifest.elections.find(x => x.year === yC);
     const candC = eC.majors.find(c => c.slug === sC);
-    els.legendTitle.innerHTML = `<strong>${cand.name}</strong> ${state.round === "fc" ? "first choice" : "RCV final"} <span style="color:var(--ink-dim)">minus</span> <strong>${candC.name}</strong> ${rC === "fc" ? "first choice" : "RCV final"} (pp)`;
+    const negColor = stops[0][1];   // strong negative end (compare candidate stronger)
+    const posColor = stops[stops.length - 1][1];  // strong positive end (selected candidate stronger)
+    els.legendTitle.innerHTML = `Where each candidate ran stronger`;
+    els.legendTicks.innerHTML = `
+      <span style="color:${negColor}; font-weight:600">${shortName(candC.name)} +30 pp</span>
+      <span style="color:var(--ink-dim)">even</span>
+      <span style="color:${posColor}; font-weight:600">${shortName(cand.name)} +30 pp</span>
+    `;
   } else {
+    els.legendTicks.innerHTML = stops.map(([v]) => `<span>${v}%</span>`).join("");
     els.legendTitle.innerHTML = `<strong>${cand.name}</strong> — ${state.round === "fc" ? "first-choice" : "RCV final-round"} share`;
   }
 }
