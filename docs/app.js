@@ -1,5 +1,5 @@
 // NYC election archive — MapLibre frontend
-// Loads manifest.json and one results_<year>.geojson per election.
+// Loads manifest.json and one results_<id>.geojson per election.
 // User picks election + round + candidate; map recolors via data-driven style.
 
 const TILES_BASE = ".";  // results_<year>.geojson live alongside index.html
@@ -50,11 +50,11 @@ map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-ri
 
 const state = {
   manifest: null,
-  data: {},      // year -> geojson
-  election: null,
-  round: "fc",   // "fc" or "fr"
+  data: {},        // election id -> geojson
+  election: null,  // election id (e.g. "2025_general_mayor")
+  round: "fc",     // "fc" or "fr"; locked to "fc" for non-RCV elections
   candidate: null,
-  compare: "",   // "" or "<year>:<round>:<slug>"
+  compare: "",     // "" or "<id>:<round>:<slug>"
 };
 
 const els = {
@@ -109,16 +109,19 @@ async function loadManifest() {
   const r = await fetch("manifest.json");
   state.manifest = await r.json();
   for (const e of state.manifest.elections) {
-    const r2 = await fetch(`${tilesBase}/results_${e.year}.geojson`);
-    state.data[e.year] = await r2.json();
+    const r2 = await fetch(`${tilesBase}/results_${e.id}.geojson`);
+    state.data[e.id] = await r2.json();
   }
+}
+
+function currentElection() {
+  return state.manifest.elections.find(x => x.id === state.election);
 }
 
 function setupSources() {
   // One source, one layer — election change just swaps the data on the source.
-  // (Avoids fragile getLayer().source comparisons across MapLibre versions.)
-  const first = state.manifest.elections[0].year;
-  map.addSource("ed", { type: "geojson", data: state.data[first] });
+  const firstId = state.manifest.elections[0].id;
+  map.addSource("ed", { type: "geojson", data: state.data[firstId] });
   map.addLayer({
     id: "ed-fill",
     type: "fill",
@@ -141,17 +144,42 @@ function setupSources() {
 
 function populateElectionSelect() {
   els.election.innerHTML = "";
+  // Group by year for readability when there are many elections.
+  const byYear = new Map();
   for (const e of state.manifest.elections) {
-    const opt = document.createElement("option");
-    opt.value = e.year;
-    opt.textContent = `${e.year} Democratic primary — Mayor`;
-    els.election.appendChild(opt);
+    if (!byYear.has(e.year)) byYear.set(e.year, []);
+    byYear.get(e.year).push(e);
   }
-  state.election = state.manifest.elections[0].year;
+  const years = [...byYear.keys()].sort((a, b) => b - a);
+  for (const y of years) {
+    const elections = byYear.get(y);
+    if (elections.length === 1) {
+      const e = elections[0];
+      const opt = document.createElement("option");
+      opt.value = e.id;
+      opt.textContent = e.label;
+      els.election.appendChild(opt);
+    } else {
+      const og = document.createElement("optgroup");
+      og.label = String(y);
+      for (const e of elections) {
+        const opt = document.createElement("option");
+        opt.value = e.id;
+        opt.textContent = e.label.replace(`${y} `, "");
+        og.appendChild(opt);
+      }
+      els.election.appendChild(og);
+    }
+  }
+  // Default to the most recent general (most editorially relevant), else first.
+  const def = state.manifest.elections.find(e => e.year === years[0] && e.type === "general")
+            || state.manifest.elections[0];
+  state.election = def.id;
+  els.election.value = def.id;
 }
 
 function populateCandidateSelect() {
-  const e = state.manifest.elections.find(x => x.year === state.election);
+  const e = currentElection();
   els.candidate.innerHTML = "";
   for (const c of e.majors) {
     const opt = document.createElement("option");
@@ -159,25 +187,38 @@ function populateCandidateSelect() {
     opt.textContent = c.name;
     els.candidate.appendChild(opt);
   }
-  // default: most recognizable / leading — pick first
   state.candidate = e.majors[0].slug;
   els.candidate.value = state.candidate;
 }
 
 function populateCompareSelect() {
-  // Only same-year, same-round comparisons are geographically meaningful: the 2021 and
-  // 2025 elections use different ED numbering, so cross-year diff by ED ID is misleading.
-  // Keep the option to compare any major candidate to any other within the active year.
+  // Same-election compare only — cross-election diff by ED ID is unreliable
+  // because ED boundaries change between elections.
   els.compare.innerHTML = '<option value="">— off —</option>';
-  const e = state.manifest.elections.find(x => x.year === state.election);
+  const e = currentElection();
+  const rounds = e.rcv ? [["fc", "first choice"], ["fr", "RCV final"]] : [["fc", "vote share"]];
   for (const c of e.majors) {
     if (c.slug === state.candidate) continue;
-    for (const r of [["fc", "first choice"], ["fr", "RCV final"]]) {
+    for (const r of rounds) {
       const opt = document.createElement("option");
-      opt.value = `${e.year}:${r[0]}:${c.slug}`;
-      opt.textContent = `${c.name} • ${r[1]}`;
+      opt.value = `${e.id}:${r[0]}:${c.slug}`;
+      opt.textContent = e.rcv ? `${c.name} • ${r[1]}` : c.name;
       els.compare.appendChild(opt);
     }
+  }
+}
+
+function syncRoundToggleVisibility() {
+  const e = currentElection();
+  const wrap = els.round.parentElement;  // the .control wrapper
+  if (!e.rcv) {
+    wrap.style.display = "none";
+    state.round = "fc";
+    for (const b of els.round.querySelectorAll("button")) {
+      b.classList.toggle("active", b.dataset.round === "fc");
+    }
+  } else {
+    wrap.style.display = "";
   }
 }
 
@@ -194,8 +235,8 @@ function applyStyle() {
   const baseSrc = state.data[state.election];
   const compareOn = state.compare !== "";
   if (compareOn) {
-    const [yC, rC, sC] = state.compare.split(":");
-    const cmpSrc = state.data[yC];
+    const [eC_id, rC, sC] = state.compare.split(":");
+    const cmpSrc = state.data[eC_id];
     const cmpProp = `${rC}_${sC}`;
     const lookup = new Map();
     for (const f of cmpSrc.features) lookup.set(f.properties.ed, f.properties[cmpProp] ?? 0);
@@ -216,19 +257,24 @@ function shortName(name) {
   return parts[parts.length - 1];
 }
 
+function roundLabel(rcv, round) {
+  if (!rcv) return "vote share";
+  return round === "fc" ? "first-choice share" : "RCV final-round share";
+}
+
 function renderLegend(mode) {
   const stops = mode === "diff" ? DIFF_STOPS : SHARE_STOPS;
   const grad = stops.map(([v, c], i) => `${c} ${(i / (stops.length - 1)) * 100}%`).join(", ");
   els.legendBar.style.background = `linear-gradient(to right, ${grad})`;
-  const e = state.manifest.elections.find(x => x.year === state.election);
+  const e = currentElection();
   const cand = e.majors.find(c => c.slug === state.candidate);
 
   if (mode === "diff") {
-    const [yC, rC, sC] = state.compare.split(":");
-    const eC = state.manifest.elections.find(x => x.year === yC);
+    const [eC_id, rC, sC] = state.compare.split(":");
+    const eC = state.manifest.elections.find(x => x.id === eC_id);
     const candC = eC.majors.find(c => c.slug === sC);
-    const negColor = stops[0][1];   // strong negative end (compare candidate stronger)
-    const posColor = stops[stops.length - 1][1];  // strong positive end (selected candidate stronger)
+    const negColor = stops[0][1];
+    const posColor = stops[stops.length - 1][1];
     els.legendTitle.innerHTML = `Where each candidate ran stronger`;
     els.legendTicks.innerHTML = `
       <span style="color:${negColor}; font-weight:600">${shortName(candC.name)} +30 pp</span>
@@ -237,7 +283,7 @@ function renderLegend(mode) {
     `;
   } else {
     els.legendTicks.innerHTML = stops.map(([v]) => `<span>${v}%</span>`).join("");
-    els.legendTitle.innerHTML = `<strong>${cand.name}</strong> — ${state.round === "fc" ? "first-choice" : "RCV final-round"} share`;
+    els.legendTitle.innerHTML = `<strong>${cand.name}</strong> — ${roundLabel(e.rcv, state.round)}`;
   }
 }
 
@@ -258,7 +304,7 @@ function attachInteractions() {
 }
 
 function showTooltip(point, p) {
-  const e = state.manifest.elections.find(x => x.year === state.election);
+  const e = currentElection();
   const winner = state.round === "fc" ? p.first_winner : p.final_winner;
   const winnerPct = state.round === "fc" ? p.first_winner_pct : p.final_winner_pct;
   const compareOn = state.compare !== "";
@@ -266,18 +312,19 @@ function showTooltip(point, p) {
   const candVal = p[activeProp()];
   let body = "";
   if (compareOn) {
-    const [yC, rC, sC] = state.compare.split(":");
-    const eC = state.manifest.elections.find(x => x.year === yC);
+    const [eC_id, rC, sC] = state.compare.split(":");
+    const eC = state.manifest.elections.find(x => x.id === eC_id);
     const candC = eC.majors.find(c => c.slug === sC);
     body = `<div class="lead">${cand.name}: ${fmt.pct(candVal)}</div>
       <table>
-      <tr><td>vs ${candC.name} (${yC} ${rC === "fc" ? "1st" : "RCV"})</td><td>${fmt.pct(p.__diff)} pp</td></tr>
+      <tr><td>vs ${candC.name}</td><td>${fmt.pct(p.__diff)} pp</td></tr>
       </table>`;
   } else {
+    const winnerRoundLabel = e.rcv ? (state.round === "fc" ? "1st choice" : "RCV final") : "";
     body = `<div class="lead">${cand.name}: ${fmt.pct(candVal)}</div>
       <table>
-      <tr><td>Winner (${state.round === "fc" ? "1st choice" : "RCV final"})</td><td>${winner || "—"} ${fmt.pct(winnerPct)}</td></tr>
-      <tr><td>Ballots cast</td><td>${fmt.int(p.ballots)}</td></tr>
+      <tr><td>Winner${winnerRoundLabel ? " (" + winnerRoundLabel + ")" : ""}</td><td>${winner || "—"} ${fmt.pct(winnerPct)}</td></tr>
+      <tr><td>${e.rcv ? "Ballots cast" : "Votes cast"}</td><td>${fmt.int(p.ballots)}</td></tr>
       </table>`;
   }
   els.tooltip.innerHTML = `<h3>ED ${p.ed} (AD ${Math.floor(p.ed/1000)}, ED ${(p.ed%1000).toString().padStart(3,'0')})</h3>${body}`;
@@ -289,16 +336,17 @@ function showTooltip(point, p) {
 }
 
 function renderHover(p) {
-  const e = state.manifest.elections.find(x => x.year === state.election);
+  const e = currentElection();
   const rows = e.majors.map(c => {
     const fc = p[`fc_${c.slug}`];
     const fr = p[`fr_${c.slug}`];
-    return `<div class="stat"><span class="k">${c.name}</span><span class="v">${fmt.pct(fc)} → ${fmt.pct(fr)}</span></div>`;
+    const display = e.rcv ? `${fmt.pct(fc)} → ${fmt.pct(fr)}` : fmt.pct(fc);
+    return `<div class="stat"><span class="k">${c.name}</span><span class="v">${display}</span></div>`;
   }).join("");
   els.hover.innerHTML = `
-    <div style="font-size:12px;color:var(--ink-dim);margin-bottom:6px;">ED ${p.ed} • ${fmt.int(p.ballots)} ballots</div>
+    <div style="font-size:12px;color:var(--ink-dim);margin-bottom:6px;">ED ${p.ed} • ${fmt.int(p.ballots)} ${e.rcv ? "ballots" : "votes"}</div>
     ${rows}
-    <div style="margin-top:6px;font-size:11px;color:var(--ink-dim);">first choice → RCV final</div>
+    ${e.rcv ? '<div style="margin-top:6px;font-size:11px;color:var(--ink-dim);">first choice → RCV final</div>' : ""}
   `;
 }
 
@@ -308,6 +356,7 @@ els.election.addEventListener("change", () => {
   state.compare = "";
   populateCandidateSelect();
   populateCompareSelect();
+  syncRoundToggleVisibility();
   applyStyle();
 });
 els.candidate.addEventListener("change", () => {
@@ -344,6 +393,7 @@ async function initUI() {
   populateElectionSelect();
   populateCandidateSelect();
   populateCompareSelect();
+  syncRoundToggleVisibility();
   _uiReady = true;
   whenMapReady(initMap);
 }

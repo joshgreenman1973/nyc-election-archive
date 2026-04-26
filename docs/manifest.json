@@ -1,27 +1,56 @@
 {
   "elections": [
     {
-      "year": "2021",
+      "id": "2017_general_mayor",
+      "year": 2017,
+      "label": "2017 general \u2014 Mayor",
+      "type": "general",
+      "rcv": false,
       "majors": [
         {
-          "candidacy_id": 217572,
-          "name": "Eric L. Adams",
-          "slug": "adams"
+          "candidacy_id": 2,
+          "name": "Akeem Browder",
+          "slug": "browder"
         },
         {
-          "candidacy_id": 217605,
-          "name": "Scott M. Stringer",
-          "slug": "stringer"
+          "candidacy_id": 3,
+          "name": "Bill de Blasio",
+          "slug": "blasio"
         },
+        {
+          "candidacy_id": 4,
+          "name": "Bo Dietl",
+          "slug": "dietl"
+        },
+        {
+          "candidacy_id": 5,
+          "name": "Michael Tolkin",
+          "slug": "tolkin"
+        },
+        {
+          "candidacy_id": 6,
+          "name": "Nicole Malliotakis",
+          "slug": "malliotakis"
+        },
+        {
+          "candidacy_id": 7,
+          "name": "Sal F. Albanese",
+          "slug": "albanese"
+        }
+      ],
+      "matched": 5720
+    },
+    {
+      "id": "2021",
+      "year": 2021,
+      "label": "2021 Democratic primary \u2014 Mayor",
+      "type": "primary",
+      "rcv": true,
+      "majors": [
         {
           "candidacy_id": 217796,
           "name": "Andrew Yang",
           "slug": "yang"
-        },
-        {
-          "candidacy_id": 218127,
-          "name": "Raymond J. McGuire",
-          "slug": "mcguire"
         },
         {
           "candidacy_id": 218491,
@@ -29,14 +58,29 @@
           "slug": "morales"
         },
         {
-          "candidacy_id": 219469,
-          "name": "Maya D. Wiley",
-          "slug": "wiley"
+          "candidacy_id": 217572,
+          "name": "Eric L. Adams",
+          "slug": "adams"
         },
         {
           "candidacy_id": 219978,
           "name": "Kathryn A. Garcia",
           "slug": "garcia"
+        },
+        {
+          "candidacy_id": 219469,
+          "name": "Maya D. Wiley",
+          "slug": "wiley"
+        },
+        {
+          "candidacy_id": 218127,
+          "name": "Raymond J. McGuire",
+          "slug": "mcguire"
+        },
+        {
+          "candidacy_id": 217605,
+          "name": "Scott M. Stringer",
+          "slug": "stringer"
         },
         {
           "candidacy_id": 221183,
@@ -47,8 +91,47 @@
       "matched": 5623
     },
     {
-      "year": "2025",
+      "id": "2021_general_mayor",
+      "year": 2021,
+      "label": "2021 general \u2014 Mayor",
+      "type": "general",
+      "rcv": false,
       "majors": [
+        {
+          "candidacy_id": 1,
+          "name": "Catherine Rojas",
+          "slug": "rojas"
+        },
+        {
+          "candidacy_id": 2,
+          "name": "Curtis A. Sliwa",
+          "slug": "sliwa"
+        },
+        {
+          "candidacy_id": 3,
+          "name": "Eric L. Adams",
+          "slug": "adams"
+        },
+        {
+          "candidacy_id": 9,
+          "name": "William A. Pepitone",
+          "slug": "pepitone"
+        }
+      ],
+      "matched": 5697
+    },
+    {
+      "id": "2025",
+      "year": 2025,
+      "label": "2025 Democratic primary \u2014 Mayor",
+      "type": "primary",
+      "rcv": true,
+      "majors": [
+        {
+          "candidacy_id": 257465,
+          "name": "Adrienne E. Adams",
+          "slug": "adams"
+        },
         {
           "candidacy_id": 254052,
           "name": "Andrew M. Cuomo",
@@ -60,22 +143,42 @@
           "slug": "lander"
         },
         {
-          "candidacy_id": 254286,
-          "name": "Zohran Kwame Mamdani",
-          "slug": "mamdani"
-        },
-        {
           "candidacy_id": 254393,
           "name": "Scott M. Stringer",
           "slug": "stringer"
         },
         {
-          "candidacy_id": 257465,
-          "name": "Adrienne E. Adams",
-          "slug": "adams"
+          "candidacy_id": 254286,
+          "name": "Zohran Kwame Mamdani",
+          "slug": "mamdani"
         }
       ],
       "matched": 4014
+    },
+    {
+      "id": "2025_general_mayor",
+      "year": 2025,
+      "label": "2025 general \u2014 Mayor",
+      "type": "general",
+      "rcv": false,
+      "majors": [
+        {
+          "candidacy_id": 1,
+          "name": "Andrew M. Cuomo",
+          "slug": "cuomo"
+        },
+        {
+          "candidacy_id": 2,
+          "name": "Curtis A. Sliwa",
+          "slug": "sliwa"
+        },
+        {
+          "candidacy_id": 7,
+          "name": "Zohran Kwame Mamdani",
+          "slug": "mamdani"
+        }
+      ],
+      "matched": 4069
     }
   ]
 }
